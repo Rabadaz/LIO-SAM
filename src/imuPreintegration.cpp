@@ -142,6 +142,8 @@ public:
         }
         geometry_msgs::msg::TransformStamped ts;
         tf2::convert(tCur, ts);
+        ts.header.stamp = odomMsg->header.stamp;
+        ts.header.frame_id = odometryFrame;
         ts.child_frame_id = baselinkFrame;
         tfBroadcaster->sendTransform(ts);
 
